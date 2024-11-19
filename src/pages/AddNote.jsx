@@ -1,10 +1,17 @@
+// Library imports
 import { useNavigate } from "react-router-dom";
+
+// Custom hook import
+import { useAuth } from "../hooks/useAuth";
 import { useNotes } from "../hooks/useNotes";
+
+// Component imports
 import NoteForm from "../components/NoteForm";
 
 export default function AddNote() {
   const navigate = useNavigate();
-  const { addNote } = useNotes();
+  const { username } = useAuth();
+  const { addNote } = useNotes(username);
 
   const handleSubmit = (note) => {
     addNote(note);

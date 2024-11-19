@@ -4,15 +4,17 @@ import { useState, useEffect } from "react";
 // Helper function imports
 import { saveNotes, getNotes } from "../utils/storage";
 
-// Library imports
+// Libray imports
 import { toast } from "react-toastify";
 
-export function useNotes() {
+export function useNotes(username) {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    setNotes(getNotes());
-  }, []);
+    if (username) {
+      setNotes(getNotes(username));
+    }
+  }, [username]);
 
   const addNote = (note) => {
     const newNotes = [
@@ -25,7 +27,7 @@ export function useNotes() {
     ];
 
     setNotes(newNotes);
-    saveNotes(newNotes);
+    saveNotes(newNotes, username);
     toast.success("Note created successfully!");
   };
 
@@ -35,7 +37,7 @@ export function useNotes() {
     );
 
     setNotes(newNotes);
-    saveNotes(newNotes);
+    saveNotes(newNotes, username);
     toast.success("Note updated successfully!");
   };
 
@@ -43,7 +45,7 @@ export function useNotes() {
     const newNotes = notes.filter((note) => note.id !== id);
 
     setNotes(newNotes);
-    saveNotes(newNotes);
+    saveNotes(newNotes, username);
     toast.success("Note deleted successfully!");
   };
 

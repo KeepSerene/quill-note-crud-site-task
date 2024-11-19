@@ -1,12 +1,21 @@
+// Library imports
 import { useParams, useNavigate } from "react-router-dom";
-import { useNotes } from "../hooks/useNotes";
-import NoteForm from "../components/NoteForm";
 import { FaArrowLeft, FaTrash } from "react-icons/fa";
+
+// Custom hook imports
+import { useNotes } from "../hooks/useNotes";
+import { useAuth } from "../hooks/useAuth";
+
+// Component imports
+import NoteForm from "../components/NoteForm";
 
 export default function NoteDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { notes, updateNote, deleteNote } = useNotes();
+
+  const { username } = useAuth();
+  const { notes, updateNote, deleteNote } = useNotes(username);
+
   const note = notes.find((n) => n.id === Number(id));
 
   if (!note) {

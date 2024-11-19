@@ -1,10 +1,18 @@
+// React imports
 import { useState } from "react";
+
+// Custom hook imports
+import { useAuth } from "../hooks/useAuth";
 import { useNotes } from "../hooks/useNotes";
+
+// Component imports
 import SearchBar from "../components/SearchBar";
 import NoteCard from "../components/NoteCard";
 
 export default function Notes() {
-  const { notes } = useNotes();
+  const { username } = useAuth();
+  const { notes } = useNotes(username);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredNotes = notes.filter(
