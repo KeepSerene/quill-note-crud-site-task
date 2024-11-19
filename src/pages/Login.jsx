@@ -37,7 +37,7 @@ export default function Login() {
               type="text"
               required
               value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}
+              onChange={(event) => setNewUsername(event.target.value)}
               className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               placeholder="Choose a username"
               aria-label="Username"
