@@ -42,10 +42,10 @@ export function useNotes(username) {
   };
 
   const deleteNote = (id) => {
-    const newNotes = notes.filter((note) => note.id !== id);
+    const remainingNotes = notes.filter((note) => note.id !== id);
 
-    setNotes(newNotes);
-    saveNotes(newNotes, username);
+    setNotes(remainingNotes);
+    saveNotes(remainingNotes, username);
     toast.success("Note deleted successfully!");
   };
 
